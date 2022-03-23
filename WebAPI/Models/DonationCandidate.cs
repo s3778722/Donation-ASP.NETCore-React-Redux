@@ -10,21 +10,20 @@ namespace WebAPI.Models
         public int Id { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        public string fullName { get; set; }
+        public string FullName { get; set; }
 
         [Column(TypeName = "nvarchar(16)")]
-        public string mobile { get; set; }
+        public string Mobile { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
-        public int age { get; set; }
+        public int Age { get; set; }
 
         [Column(TypeName = "nvarchar(3)")]
-        public string bloodGroup { get; set; }
+        public string BloodGroup { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
-        public string address { get; set; }
-
+        public string Address { get; set; }
     }
 }
