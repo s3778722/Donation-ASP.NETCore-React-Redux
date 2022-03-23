@@ -1,10 +1,19 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+
 namespace WebAPI.Models
 {
-    public class DonationDBContext
+    // Create Database Context
+    public class DonationDBContext : DbContext
     {
-        public DonationDBContext()
+
+        public DonationDBContext(DbContextOptions<DonationDBContext> options):
+            base(options)
         {
+
         }
+
+        // An entity set typically corresponds to a database table.
+        public DbSet<DonationCandidate> DonationCandidates { get; set; }
     }
 }
