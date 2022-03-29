@@ -1,3 +1,5 @@
+import api from "./api";
+
 export const ACTION_TYPES = {
   CREATE: "CREATE",
   UPDATE: "UPDATE",
@@ -14,13 +16,35 @@ function fetchAll() {
 }
 */
 
-const fetchAllFunction = () => ({
+const fetchAllFunction = (response) => ({
   type: ACTION_TYPES.FETCH_ALL,
-  payload: [],
+  payload: response.data,
+});
+
+const createFunction = (response) => ({
+  type: ACTION_TYPES.CREATE,
+  payload: response.data,
 });
 
 export const fetchAll = () => {
   return (dispatch) => {
-    dispatch(fetchAllFunction());
+    api()
+      .fetchAll()
+      .then((response) => {
+        dispatch(fetchAllFunction(response));
+      })
+      .catch((error) => console.log(error));
   };
-};  
+};
+
+export const create = (data,onSuccess) => {
+  return (dispatch) => {
+    api()
+      .create(data)
+      .then((response) => {
+        dispatch(createFunction(response));
+        onSuccess();
+      })
+      .catch((error) => console.log(error));
+  };
+};
