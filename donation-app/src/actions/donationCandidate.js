@@ -15,6 +15,14 @@ function fetchAll() {
   };
 }
 */
+/** Similar
+const fetchAllFunction = (response) => {
+  return {
+    type: ACTION_TYPES.FETCH_ALL,
+    payload: response.data,
+  };
+};
+*/
 
 const fetchAllFunction = (response) => ({
   type: ACTION_TYPES.FETCH_ALL,
@@ -37,7 +45,7 @@ export const fetchAll = () => {
   };
 };
 
-export const create = (data,onSuccess) => {
+export const create = (data, onSuccess) => {
   return (dispatch) => {
     api()
       .create(data)

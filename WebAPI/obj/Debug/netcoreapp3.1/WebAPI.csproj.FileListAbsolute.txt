@@ -152,3 +152,4 @@
 /Users/hanchienleow/Projects/WebAPI/WebAPI/obj/Debug/netcoreapp3.1/WebAPI.dll
 /Users/hanchienleow/Projects/WebAPI/WebAPI/obj/Debug/netcoreapp3.1/WebAPI.pdb
 /Users/hanchienleow/Projects/WebAPI/WebAPI/obj/Debug/netcoreapp3.1/WebAPI.genruntimeconfig.cache
+/Users/hanchienleow/Projects/WebAPI/WebAPI/obj/Debug/netcoreapp3.1/WebAPI.csproj.AssemblyReference.cache
