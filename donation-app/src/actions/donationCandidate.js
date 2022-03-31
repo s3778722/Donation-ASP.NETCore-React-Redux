@@ -34,6 +34,12 @@ const createFunction = (response) => ({
   payload: response.data,
 });
 
+const updateFunction = (id, data) => ({
+  type: ACTION_TYPES.UPDATE,
+  //{id, ...data } is a shorthand for {id: id, ...data }
+  payload: { id, ...data },
+});
+
 export const fetchAll = () => {
   return (dispatch) => {
     api()
@@ -55,4 +61,30 @@ export const create = (data, onSuccess) => {
       })
       .catch((error) => console.log(error));
   };
+};
+
+export const update = (id, data, onSuccess) => {
+  return (dispatch) => {
+    api()
+      .update(id, data)
+      .then((response) => {
+        dispatch(updateFunction(id, data));
+        onSuccess();
+      })
+      .catch((error) => console.log(error));
+  };
+};
+
+//Another way to write dispatch
+export const Delete = (id, onSuccess) => (dispatch) => {
+  api()
+    .delete(id)
+    .then((response) => {
+      dispatch({
+        type: ACTION_TYPES.DELETE,
+        payload: id,
+      });
+      onSuccess();
+    })
+    .catch((error) => console.log(error));
 };

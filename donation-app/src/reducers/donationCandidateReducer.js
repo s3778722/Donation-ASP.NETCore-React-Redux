@@ -1,7 +1,7 @@
 import { ACTION_TYPES } from "../actions/donationCandidate";
 
 const initialState = {
-  list: [],
+  data: [],
 };
 
 //Rules of Reducers
@@ -17,21 +17,21 @@ const donationCandidateReducer = (state = initialState, action) => {
         // copy the entire state object
         ...state,
         // overwrite the list value with action payload
-        list: [...action.payload],
+        data: [...action.payload],
       };
     case ACTION_TYPES.CREATE:
       return {
         // copy the entire state object
         ...state,
         // overwrite the list value with the previous state list + action payload
-        list: [...state.list, action.payload],
+        data: [...state.data, action.payload],
       };
     case ACTION_TYPES.UPDATE:
       return {
         // copy the entire state object
         ...state,
         // overwrite the list value with action payload if the id matches.
-        list: state.list.map((x) =>
+        data: state.data.map((x) =>
           x.id === action.payload.id ? action.payload : x
         ),
       };
@@ -41,7 +41,7 @@ const donationCandidateReducer = (state = initialState, action) => {
         // copy the entire state object
         ...state,
         // overwrite the list value by filtering out the item with id
-        list: state.list.filter((x) => x.id !== action.payload),
+        data: state.data.filter((x) => x.id !== action.payload),
       };
 
     default:

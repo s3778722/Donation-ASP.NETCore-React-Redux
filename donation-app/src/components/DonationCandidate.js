@@ -24,7 +24,7 @@ const DonationCandidate = () => {
 
   // utilized useSelector() hook to replace mapStateToProps()
   const stateDonationCandidate = useSelector(
-    (state) => state.donationCandidateReducer.list
+    (state) => state.donationCandidateReducer.data
   );
 
   console.log(stateDonationCandidate);
