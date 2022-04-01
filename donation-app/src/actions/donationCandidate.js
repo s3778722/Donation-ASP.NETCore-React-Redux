@@ -51,27 +51,33 @@ export const fetchAll = () => {
   };
 };
 
-export const create = (data, onSuccess) => {
+export const create = (data, setErrorMessage) => {
   return (dispatch) => {
     api()
       .create(data)
       .then((response) => {
         dispatch(createFunction(response));
-        onSuccess();
+        // able to pass onSuccess() function here by adding a new onSuccess argument
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage(error.message);
+      });
   };
 };
 
-export const update = (id, data, onSuccess) => {
+export const update = (id, data, setErrorMessage) => {
   return (dispatch) => {
     api()
       .update(id, data)
       .then((response) => {
         dispatch(updateFunction(id, data));
-        onSuccess();
+        //onSuccess();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setErrorMessage(error.message);
+      });
   };
 };
 
