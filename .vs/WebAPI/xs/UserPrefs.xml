@@ -1,25 +1,29 @@
 ﻿<Properties StartupConfiguration="{4E2651C8-1F7F-44B9-BF23-61257DA123CD}|Default">
   <MonoDevelop.Ide.ItemProperties.WebAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WebAPI/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebAPI/Models/DonationCandidate.cs">
     <Files>
       <File FileName="WebAPI/Models/DonationDBContext.cs" Line="13" Column="1" />
-      <File FileName="WebAPI/Program.cs" Line="4" Column="12" />
-      <File FileName="WebAPI/Controllers/DonationCandidateController.cs" Line="19" Column="10" />
-      <File FileName="WebAPI/appsettings.json" Line="1" Column="1" />
-      <File FileName="WebAPI/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
+      <File FileName="WebAPI/Program.cs" />
+      <File FileName="WebAPI/Controllers/DonationCandidateController.cs" Line="1" Column="1" />
+      <File FileName="WebAPI/appsettings.json" />
+      <File FileName="WebAPI/Controllers/WeatherForecastController.cs" />
       <File FileName="WebAPI/Models/DonationCandidate.cs" Line="1" Column="1" />
-      <File FileName="WebAPI/Startup.cs" Line="27" Column="28" />
+      <File FileName="WebAPI/Migrations/20220323115711_InitialCreate.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="WebAPI" expanded="True">
             <Node name="WebAPI" expanded="True">
-              <Node name="Dependencies" expanded="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
+              <Node name="Models" expanded="True">
+                <Node name="DonationCandidate.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

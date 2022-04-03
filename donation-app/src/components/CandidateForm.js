@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   TextField,
@@ -26,9 +26,8 @@ const defaultValues = {
   address: "",
 };
 
-const CandidateForm = () => {
+const CandidateForm = (props) => {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [currentId, setCurrentId] = useState(0);
   const [successAlert, setSuccessAlert] = useState(false);
   const [errorAlert, setErrorAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -44,17 +43,29 @@ const CandidateForm = () => {
     // const c = {}
     // c[a] = "d"
     const fieldValues = { [name]: value };
+    if (fieldValues.age){
+      fieldValues.age = parseInt(fieldValues.age)
+    }
     setFormValues({
       ...formValues,
       ...fieldValues, // or can replace here << [name]: value >>
     });
   };
 
+  useEffect(() => {
+    if (props.currentId !== 0) {
+      const newUser = props.stateDonationCandidate.find(
+        (user) => user.id === props.currentId
+      );
+      setFormValues(newUser);
+    }
+  }, [props.currentId, props.stateDonationCandidate]);
+
   console.log(formValues);
 
   const resetForm = () => {
     setFormValues(defaultValues);
-    setCurrentId(0);
+    props.setCurrentId(0);
   };
 
   const nameBeforeReset = (name) => {
@@ -63,22 +74,21 @@ const CandidateForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentId === 0) {
-      const action = dispatch(actions.create(formValues, setErrorMessage));
-      if (action) {
-        setSuccessAlert(true);
-        nameBeforeReset(formValues.fullName);
-        resetForm();
-      } else {
+    const onSuccess = () => {
+      setSuccessAlert(true);
+      nameBeforeReset(formValues.fullName);
+      resetForm();
+    };
+    if (props.currentId === 0) {
+      dispatch(actions.create(formValues, setErrorMessage, onSuccess));
+      if (errorMessage){
         setErrorAlert(true);
       }
     } else {
-      const action = dispatch(actions.update(currentId, formValues, setErrorMessage));
-      if (action) {
-        setSuccessAlert(true);
-        nameBeforeReset(formValues.fullName);
-        resetForm();
-      } else {
+      dispatch(
+        actions.update(props.currentId, formValues, setErrorMessage, onSuccess)
+      );
+      if (errorMessage){
         setErrorAlert(true);
       }
     }
@@ -204,7 +214,7 @@ const CandidateForm = () => {
           >
             Submit
           </Button>
-          <Button variant="outlined" color="warning">
+          <Button variant="outlined" color="warning" onClick={resetForm}>
             Reset
           </Button>
         </Box>

@@ -38,6 +38,7 @@ const updateFunction = (id, data) => ({
   type: ACTION_TYPES.UPDATE,
   //{id, ...data } is a shorthand for {id: id, ...data }
   payload: { id, ...data },
+
 });
 
 export const fetchAll = () => {
@@ -51,13 +52,14 @@ export const fetchAll = () => {
   };
 };
 
-export const create = (data, setErrorMessage) => {
+export const create = (data, setErrorMessage, onSuccess) => {
   return (dispatch) => {
     api()
       .create(data)
       .then((response) => {
         dispatch(createFunction(response));
         // able to pass onSuccess() function here by adding a new onSuccess argument
+        onSuccess();
       })
       .catch((error) => {
         console.log(error);
@@ -66,23 +68,24 @@ export const create = (data, setErrorMessage) => {
   };
 };
 
-export const update = (id, data, setErrorMessage) => {
+export const update = (id, data, setErrorMessage, onSuccess) => {
   return (dispatch) => {
-    api()
+     api()
       .update(id, data)
       .then((response) => {
         dispatch(updateFunction(id, data));
-        //onSuccess();
+        onSuccess();
       })
       .catch((error) => {
         console.log(error);
         setErrorMessage(error.message);
       });
+
   };
 };
 
 //Another way to write dispatch
-export const Delete = (id, onSuccess) => (dispatch) => {
+export const deleteCandidate = (id) => (dispatch) => {
   api()
     .delete(id)
     .then((response) => {
@@ -90,7 +93,7 @@ export const Delete = (id, onSuccess) => (dispatch) => {
         type: ACTION_TYPES.DELETE,
         payload: id,
       });
-      onSuccess();
+      //onSuccess();
     })
     .catch((error) => console.log(error));
 };
